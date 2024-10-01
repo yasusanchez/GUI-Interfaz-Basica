@@ -23,6 +23,34 @@ public class ProductRegistrationFrame extends JFrame {
 
     private void initComponents() {
         // Implementa la inicialización de componentes
+        setLayout(new BorderLayout());
+
+        JPanel inputPanel = new JPanel(new GridLayout(4, 2));
+        inputPanel.add(new JLabel("ID:"));
+        idField = new JTextField();
+        inputPanel.add(idField);
+
+        inputPanel.add(new JLabel("Nombre:"));
+        nameField = new JTextField();
+        inputPanel.add(nameField);
+
+        inputPanel.add(new JLabel("Precio:"));
+        priceField = new JTextField();
+        inputPanel.add(priceField);
+
+        inputPanel.add(new JLabel("Cantidad:"));
+        quantityField = new JTextField();
+        inputPanel.add(quantityField);
+
+        JButton saveButton = new JButton("Guardar");
+        saveButton.addActionListener(e -> saveProduct());
+
+        add(inputPanel, BorderLayout.NORTH);
+        add(saveButton, BorderLayout.SOUTH);
+
+        tableModel = new ProductTableModel();
+        productTable = new JTable(tableModel);
+        add(new JScrollPane(productTable), BorderLayout.CENTER);
     }
 
     private void saveProduct() {
