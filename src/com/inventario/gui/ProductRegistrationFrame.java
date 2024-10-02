@@ -55,5 +55,23 @@ public class ProductRegistrationFrame extends JFrame {
 
     private void saveProduct() {
         // Implementa la lógica de guardado
+
+        try {
+            int id = Integer.parseInt(idField.getText());
+            String name = nameField.getText();
+            double price = Double.parseDouble(priceField.getText());
+            int quantity = Integer.parseInt(quantityField.getText());
+
+            Product product = new Product(id, name, price, quantity);
+            tableModel.addProduct(product);
+
+            // Limpia los campos
+            idField.setText("");
+            nameField.setText("");
+            priceField.setText("");
+            quantityField.setText("");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Por favor ingrese datos válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
